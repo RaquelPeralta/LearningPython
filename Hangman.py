@@ -102,6 +102,7 @@ def hangman_solo():
         input()
 
     else:   # to check if the player lost their lives
+        hangman = hangman_list[errors.__len__()]
         print("You lose!")
         print(hangman)
         print("Correct word:")
@@ -112,7 +113,7 @@ def hangman_solo():
 
 def hangman_multiplayer():
     # setup:
-    word_input = input("Player 1, insert the word that you want the other players to guess. ")
+    word_input = input("Player 1, insert the word that you want the other players to guess. ").upper()
     word = []
     word_progress = []
     errors = []
@@ -206,13 +207,12 @@ def hangman_multiplayer():
         print(word_progress)
         print(hangman)
         print("Congratulations! You win!")
-        input()
 
     else:  # to check if the player lost their lives
+        hangman = hangman_list[errors.__len__()]
         print("You lose!")
         print(hangman)
         print("Correct word:")
         print(word)
         print("Errors:")
         print(errors)
-        input()
