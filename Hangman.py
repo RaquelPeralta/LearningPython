@@ -1,9 +1,22 @@
+import random
+
 def hangman_solo():
 
     # setup:
-    word = ["B", "O", "L", "O"]
-    word_progress = ["_", "_", "_", "_"]
+
+    word = []
+    word_progress = []
     errors = []
+    word_list = ["AMETHYST", "BUNDLE", "AXOLOTL", "SPYGLASS"]
+    random_word_index = random.randrange(0, len(word_list))
+    word_input = word_list[random_word_index]
+    # create the lists:
+    i = 0
+    while i < len(word_input):
+        word.append(word_input[i])
+        word_progress.append("_")
+        i = i + 1
+
     # hangman progress:
     hangman_list = [
         """
@@ -96,7 +109,6 @@ def hangman_solo():
         print("Errors:")
         print(errors)
         input()
-
 
 def hangman_multiplayer():
     # setup:
@@ -204,4 +216,3 @@ def hangman_multiplayer():
         print("Errors:")
         print(errors)
         input()
-
