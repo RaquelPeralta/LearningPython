@@ -80,14 +80,13 @@ def setup_multiplayer():
 
 def validate_letter(letter):
     '''validates the chosen letter'''
+    screen_clear()  # to clear the previous round
     if letter in errors or letter in word_progress:  # to check if the letter is repeated
-        print("")
         print("Repeated letter. Try again.")
 
     elif letter in word:  # to check if the letter is in the word
-        print("")
-
         # to replace all of the correct letters:
+        print("Nice!")
         i = 0
         while i < (len(word)):
             if word[i] == letter:
@@ -97,7 +96,6 @@ def validate_letter(letter):
                 i +=1
 
     else:  # if it's not repeated nor correct, it's an error
-        print("")
         print("Nope.")
         errors.append(letter)
         errors.sort()
@@ -112,7 +110,7 @@ def end_of_game(hangman):
         hangman = hangman_list[errors.__len__()]
         print("You lose!")
         print(hangman)
-        print("Correct word: " + array_to_string(array_to_string(word)))
+        print("Correct word: " + array_to_string(word))
         print("Errors: " + array_to_string(errors))
 
 
@@ -144,7 +142,6 @@ def hangman_solo():
         # interface:
         hangman = hangman_list[errors.__len__()]    # to check how to draw the hangman at each phase
 
-        screen_clear()   # to clear the previous round
         print("Word progress: " + array_to_string(word_progress))
         print("Errors: " + array_to_string(errors))
         print(hangman)
@@ -162,7 +159,6 @@ def hangman_multiplayer():
         # interface:
         hangman = hangman_list[errors.__len__()]  # to check how to draw the hangman at each phase
 
-        screen_clear()   # to clear the previous round
         print("Word progress: " + array_to_string(word_progress))
         print("Errors: " + array_to_string(errors))
         print(hangman)
