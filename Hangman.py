@@ -125,6 +125,7 @@ def array_to_string(array):
     return string
 
 def screen_clear():
+    ''' clears screen.'''
     # for windows
     if name == 'nt':
         system('cls')

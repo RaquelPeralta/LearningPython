@@ -14,7 +14,7 @@ while play_again == "Y":
         if gamemode != "S" and gamemode != "M":
             print("Invalid choice. Try again.")
 
-    Hangman.screen_clear()
+    Hangman.screen_clear() # to clear the menu before entering the game
 
     if gamemode == "S":
         Hangman.hangman_solo()
@@ -24,4 +24,4 @@ while play_again == "Y":
 
     print("")
     play_again = input("Play again? (Y/any) ").upper()
-    Hangman.screen_clear()
+    Hangman.screen_clear() # to clear the game before going back to the menu
