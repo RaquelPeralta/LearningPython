@@ -1,7 +1,7 @@
 import Hangman
 
 # the "play again" functionality
-play_again = ""
+play_again = "Y"
 while play_again == "Y":
 
     # choosing the gamemode:
@@ -22,6 +22,3 @@ while play_again == "Y":
 
     print("")
     play_again = input("Play again? (Y/any) ").upper()
-
-
-

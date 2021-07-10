@@ -1,9 +1,12 @@
 import random
+from os import system, name
 
 # global vars:
 word = []
 word_progress = []
 errors = []
+word_input = ""
+
 # hangman progress:
 hangman_list = [
     """
@@ -33,7 +36,7 @@ hangman_list = [
     """
      o
     (|)
-    | 
+    |
 """,
     """
      o
@@ -44,6 +47,11 @@ hangman_list = [
 # functions for game logic:
 def setup_solo():
     '''builds the array with the random word to guess'''
+    word.clear()
+    word_progress.clear()
+    errors.clear()
+    word_input = ""
+
     word_list = ["AMETHYST", "BUNDLE", "AXOLOTL", "SPYGLASS"]
     random_word_index = random.randrange(0, len(word_list))
     word_input = word_list[random_word_index]
@@ -56,6 +64,11 @@ def setup_solo():
 
 def setup_multiplayer():
     '''builds the array with the chosen word to guess'''
+    word.clear()
+    word_progress.clear()
+    errors.clear()
+    word_input = ""
+
     word_input = input("Player 1, insert the word that you want the other players to guess. ").upper()
     # create the lists:
     i = 0
@@ -63,6 +76,7 @@ def setup_multiplayer():
         word.append(word_input[i])
         word_progress.append("_")
         i = i + 1
+    screen_clear()
 
 def validate_letter(letter):
     '''validates the chosen letter'''
@@ -91,19 +105,15 @@ def validate_letter(letter):
 def end_of_game(hangman):
     '''when the game loop ends, it validates if the player won or lost'''
     if word_progress == word:   # to check if player won
-        print(word_progress)
+        print(array_to_string(word_progress))
         print(hangman)
         print("Congratulations! You win!")
-        input()
     else:   # to check if the player lost their lives
         hangman = hangman_list[errors.__len__()]
         print("You lose!")
         print(hangman)
-        print("Correct word:")
-        print(word)
-        print("Errors:")
-        print(errors)
-        input()
+        print("Correct word: " + array_to_string(array_to_string(word)))
+        print("Errors: " + array_to_string(errors))
 
 
 # utility functions:
@@ -114,10 +124,19 @@ def array_to_string(array):
         string += i + " "
     return string
 
+def screen_clear():
+    # for windows
+    if name == 'nt':
+        system('cls')
+    # for mac and linux(here, os.name is 'posix')
+    else:
+        system('clear')
+
+
 # gamemode functions:
 def hangman_solo():
     setup_solo()
-
+    hangman = ""
     # logic:
     while word_progress != word and errors.__len__() < 6:
 
@@ -141,10 +160,8 @@ def hangman_multiplayer():
         # interface:
         hangman = hangman_list[errors.__len__()]  # to check how to draw the hangman at each phase
 
-        print("Word progress:")
-        print(word_progress)
-        print("Errors:")
-        print(errors)
+        print("Word progress: " + array_to_string(word_progress))
+        print("Errors: " + array_to_string(errors))
         print(hangman)
         letter = input("Choose a letter: ").upper()
         validate_letter(letter)
