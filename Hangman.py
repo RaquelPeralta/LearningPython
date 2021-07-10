@@ -1,13 +1,12 @@
 import random
 from os import system, name
+from UtilsRP import array_to_string, screen_clear
 
 # global vars:
 word = []
 word_progress = []
 errors = []
 word_input = ""
-
-# hangman progress:
 hangman_list = [
     """
 
@@ -53,14 +52,15 @@ def setup_solo():
     word_input = ""
 
     word_list = ["AMETHYST", "BUNDLE", "AXOLOTL", "SPYGLASS"]
-    random_word_index = random.randrange(0, len(word_list))
-    word_input = word_list[random_word_index]
+    word_input = random.choice(word_list)
+
     # create the lists:
     i = 0
     while i < len(word_input):
         word.append(word_input[i])
         word_progress.append("_")
         i = i + 1
+
 
 def setup_multiplayer():
     '''builds the array with the chosen word to guess'''
@@ -77,6 +77,7 @@ def setup_multiplayer():
         word_progress.append("_")
         i = i + 1
     screen_clear()
+
 
 def validate_letter(letter):
     '''validates the chosen letter'''
@@ -100,6 +101,7 @@ def validate_letter(letter):
         errors.append(letter)
         errors.sort()
 
+
 def end_of_game(hangman):
     '''when the game loop ends, it validates if the player won or lost'''
     if word_progress == word:   # to check if player won
@@ -114,29 +116,10 @@ def end_of_game(hangman):
         print("Errors: " + array_to_string(errors))
 
 
-# utility functions:
-def array_to_string(array):
-    '''turns an array of letters into a string with the letters divided by spaces'''
-    string = ""
-    for i in array:
-        string += i + " "
-    return string
-
-def screen_clear():
-    ''' clears screen.'''
-    # for windows
-    if name == 'nt':
-        system('cls')
-    # for mac and linux(here, os.name is 'posix')
-    else:
-        system('clear')
-
-
 # gamemode functions:
 def hangman_solo():
     setup_solo()
 
-    # logic:
     while word_progress != word and errors.__len__() < 6:
 
         # interface:
@@ -150,10 +133,10 @@ def hangman_solo():
 
     end_of_game(hangman)
 
+
 def hangman_multiplayer():
     setup_multiplayer()
 
-    # logic:
     while word_progress != word and errors.__len__() < 6:
 
         # interface:
