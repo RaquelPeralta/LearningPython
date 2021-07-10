@@ -137,13 +137,14 @@ def screen_clear():
 # gamemode functions:
 def hangman_solo():
     setup_solo()
-    hangman = ""
+
     # logic:
     while word_progress != word and errors.__len__() < 6:
 
         # interface:
         hangman = hangman_list[errors.__len__()]    # to check how to draw the hangman at each phase
 
+        screen_clear()   # to clear the previous round
         print("Word progress: " + array_to_string(word_progress))
         print("Errors: " + array_to_string(errors))
         print(hangman)
@@ -161,6 +162,7 @@ def hangman_multiplayer():
         # interface:
         hangman = hangman_list[errors.__len__()]  # to check how to draw the hangman at each phase
 
+        screen_clear()   # to clear the previous round
         print("Word progress: " + array_to_string(word_progress))
         print("Errors: " + array_to_string(errors))
         print(hangman)
