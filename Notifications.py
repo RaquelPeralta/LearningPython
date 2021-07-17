@@ -14,4 +14,4 @@ def notification(title, message):
 if __name__ == "__main__":
     while True:
         notification("Break Time", "It's time to have a break.")
-        time.sleep(1200)
+        time.sleep(1200)  # 20 minutes
