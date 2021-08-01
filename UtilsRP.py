@@ -19,3 +19,8 @@ def screen_clear():
         system('clear')
 
 
+def get_the_last_word (string):
+    '''Returns the last word in a string'''
+    # turning the string into an array, and returning the last element
+    array = string.split()
+    return array[-1]
